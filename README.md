@@ -1,33 +1,31 @@
 <img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="300" height="50"> 
 
-# Add Course Title
+# Computational Systems Biology for Complex Human Disease 2024: 21 to 26 April 2024
 
 [Wellcome Connecting Science GitHub Home Page](https://github.com/WCSCourses) <br /> 
-[Wellcome Connecting Science Website](https://coursesandconferences.wellcomeconnectingscience.org/)
+[Wellcome Connecting Science Website](https://coursesandconferences.wellcomeconnectingscience.org/event/computational-systems-biology-for-complex-human-disease-from-static-to-dynamic-representations-of-disease-mechanisms-20240421/)
 
-Add one line description of the course (the same needs to be added on the right side of the page in the description)
+Interactive training for functional analysis and interpretation of disease data using computational modelling tools
 
-### Summary
+# Course Overview
 
-Add text here
+This exciting course will focus on applied, functional analysis and interpretation of disease data using computational modelling tools.
 
-### Target Audience
+The week-long programme will cover the construction and analysis of both static and dynamic mechanistic networks of disease mechanisms concerning complex human diseases such as cancers, autoimmune, inflammatory diseases and others.
 
-Add text here
+The behaviour of cells is controlled by networks of interacting biomolecules. With biological components represented as “nodes” and the interactions between two components as “edges”, such gene networks can be used to describe the fundamental mechanisms of cellular regulation. These models formalise and integrate large parts of our biological knowledge, and enable novel insights and predictions to be made.
 
-### Learning outcomes
+These networks can serve as templates for visualising and analysing “omics” datasets, but they are however relatively limited by their static nature. Biological processes are inherently dynamic- they change in response to their environment, stage of development, or mutation. This is determined by how multiple partners interact and work together to activate pathways, and relates to how the order of events within a network may change the functional outcome. The fine-grained relationships between proteins and genes in the cell become particularly important in disease states where the healthy interactions and activities have been subverted.
 
-Add text here
+Executable modelling is a powerful tool to capture the dynamic behaviour of networks, revealing the emergent behaviour of the system under different conditions, through performing in silico simulations and perturbations.
 
-### Programme
-
-Add text here
+In this course, basic and advanced concepts of mechanistic computational modelling, ranging from pathway models to medical digital twins, will be covered through lectures, keynotes, hands on sessions and project based activities. The participants will be strongly supported to develop from theory to application throughout the week of the course.  The course will also briefly cover the use of omic datasets to either build/ infer models or compare the model’s predictions against gene and protein states found in biological samples. However, applicants should note that this is not a course on data analysis and integration. 
 
 **Course Runs**      
 
 | Course Date | Course Title | Location |Citation DOI |
 |-------------|--------------|----------|-------------|
-| Add Course Run Dates  | [Add Course Run Title](Add Github Repository link) | Location|Citation DOI |
+| 21–26 April 2024 | [Computational Systems Biology for Complex Human Disease: from static to dynamic representations of disease mechanisms](https://github.com/WCSCourses/CompSysBio24) | Wellcome Genome Campus, Hinxton |Citation DOI |
 
 ******
 
