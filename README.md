@@ -3,7 +3,7 @@
 # Computational Systems Biology for Complex Human Disease 2024: 21 to 26 April 2024
 
 [Wellcome Connecting Science GitHub Home Page](https://github.com/WCSCourses) <br /> 
-[Wellcome Connecting Science Website](https://coursesandconferences.wellcomeconnectingscience.org/event/computational-systems-biology-for-complex-human-disease-from-static-to-dynamic-representations-of-disease-mechanisms-20240421/)
+[Wellcome Connecting Science Website](https://coursesandconferences.wellcomeconnectingscience.org/)
 
 Interactive training for functional analysis and interpretation of disease data using computational modelling tools
 
