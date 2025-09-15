@@ -55,15 +55,12 @@ The course will consist of lectures, discussions, and computational exercises co
 - [Anna Niarakis](https://orcid.org/0000-0002-9687-7426), Université de Toulouse III - Paul Sabatier, Center of Integrative Biology, France
 - [Ben Hall](https://profiles.ucl.ac.uk/33570-benjamin-hall), University College London, UK
 - [David Shorthouse](https://profiles.ucl.ac.uk/82451), University College London, UK
-- [Sylvain Soliman](http://www.sun.ac.za/english/faculty/healthsciences/Molecular_Biology_Human_Genetics/tbgenomics/Pages/default.aspx), Stellenbosch University, South Africa
-- [Dam Khan](https://www.lshtm.ac.uk/aboutus/people/khan.dam), MRC Unit The Gambia at the London School of Hygiene & Tropical Medicine, The Gambia
-- [Keith Jolley](https://www.biology.ox.ac.uk/people/dr-keith-jolley), University of Oxford
-- [Leonard Ndwiga](https://www.linkedin.com/in/lndwiga), University of Glasgow
-- [Anzaan Dippenaar](https://www.uantwerpen.be/en/staff/anzaan-dippenaar/), University of Antwerp, Belgium
-- [Tiemele Laurent Simon Amoikon](https://maidenlab.zoo.ox.ac.uk/people/Simon%20Amoikon), Centre Suisse de Recherche Scientifique
-- [Shola Able-Thomas](), MRC Unit The Gambia at the London School of Hygiene & Tropical Medicine, The Gambia
-- [Noutin Fernand Michodigni](), Supranational Reference Lab for Tuberculosis, Benin
-
+- [Sylvain Soliman](https://lifeware.inria.fr/~soliman/), Stellenbosch University, South Africa
+- [Tomas Helikar](https://www.linkedin.com/in/tomashelikar/), University of Nebraska - Lincoln, USA
+- [Pedro T. Monteiro](http://pedromonteiro.org/), IST / INESC-ID - University of Lisbon, Portugal
+- [Arnau Montagud](https://arnaumontagud.netlify.app/), UInstitute for Integrative Systems Biology (I2SysBio), CSIC-UV, Spain
+- [Rahuman S Malik Sheriff](https://www.ebi.ac.uk/people/person/rahuman-sheriff/), European Bioinformatics Institute, UK
+- [Martina Summer-Kutmon]([https://maidenlab.zoo.ox.ac.uk/people/Simon%20Amoikon](https://www.linkedin.com/in/mkutmon/)), Maastricht Centre for Systems Biology and Bioinformatics (MaCSBio), Maastricht University
 
 **Wellcome Connecting Science Team**   
 
