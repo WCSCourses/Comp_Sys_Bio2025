@@ -26,6 +26,8 @@ In this course, basic and advanced concepts of mechanistic computational modelli
 | Course Date | Course Title | Location |Citation DOI |
 |-------------|--------------|----------|-------------|
 | 21–26 April 2024 | [Computational Systems Biology for Complex Human Disease: from static to dynamic representations of disease mechanisms](https://github.com/WCSCourses/CompSysBio24) | Wellcome Genome Campus, Hinxton | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14038010.svg)](https://doi.org/10.5281/zenodo.14038010) |
+| 7–12 December 2025 | [Computational Systems Biology for Digital Medicine](https://github.com/WCSCourses/CompSysBio25) | Wellcome Genome Campus, Hinxton | DOI coming soon.. |
+
 
 ******
 
