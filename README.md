@@ -1,60 +1,61 @@
 <img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="300" height="50"> 
 
-# Molecular and Genomic Approaches to Clinical Microbiology in Africa
+# Computational Systems Biology for Digital Medicine
 
-## 13-19 September 2025, MRC Unit, The Gambia
+## 7–12 December 2025, Wellcome Genome Campus, UK
 
-[Wellcome Connecting Science Course Website Link](https://coursesandconferences.wellcomeconnectingscience.org/event/molecular-and-genomic-approaches-to-clinical-microbiology-in-africa-20250913/) <br /> 
-[Course Informatics Guide](https://github.com/WCSCourses/Molecular_Approaches_Clinical_Microbiology_2025/blob/main/Course_Informatics_Guide.md) <br /> 
+[Wellcome Connecting Science Course Website Link](https://coursesandconferences.wellcomeconnectingscience.org/event/computational-systems-biology-for-digital-medicine-20251207/) <br /> 
+[Course Informatics Guide](#) <br /> 
 
-**Discover the revolutionary potential of molecular and genomic techniques in clinical microbiology for tackling infectious diseases** 
+**From data to models to digital twins** 
 
 ### Summary
 
-Molecular and genomic techniques are revolutionising the routine identification and characterisation of pathogens, opening new opportunities and challenges in all areas of clinical microbiology from clinical diagnostics to fundamental research. This course will examine the impact of these approaches using region-specific clinical scenarios. 
+This advanced course will focus on integrating biological data in computational models to study complex disease mechanisms, focusing on oncology and autoimmunity.  It will emphasise building mechanistic computational models that can be used to analyse a system from a dynamic perspective and give insights into the emerging behaviour under multiple perturbations. The course will present examples from small to medium-sized models to developing large-scale, multicellular digital twins, covering the state of the art and the new developments in the field.
 
-The week-long training course will be held at, and in collaboration, with the [MRC Unit in The Gambia](https://www.youtube.com/watch?v=ZeR-wK0rXhU) and feature an intensive programme delivered by field experts providing clinical microbiologists and laboratory scientists with a concise yet comprehensive overview of the latest research and best practice in this essential area.
+The participants will be guided through the basics of network biology, with use cases ranging from cancer to inflammation and autoimmunity. Networks are the backbone of biological mechanisms, as nothing acts in isolation in living organisms. Graph-based models can formalise and integrate large parts of prior biological knowledge, serve as templates for visualising and analysing “omics” datasets and enable novel insights and predictions. Adding the mathematical description of the interactions allows us to perform simulations and study the behaviour of these systems in time and under multiple scenarios. In other words, a formal description of the interactions will enable us to pass from static to dynamic, executable models of biological processes.  Executable modelling is a powerful tool for capturing networks’ dynamic behaviour, revealing the system’s emergent behaviour under different conditions by performing in silico simulations and perturbations.
 
 ### Target Audience
 
-This course is open only to applicants based in Africa.
-
-Applicants should have demonstrable experience in a relevant field (microbiology, specifically bacteriology) and be, clinical trainees or specialists in medical microbiology; postdoctoral scientists; senior technicians; or research assistants with a Master’s degree. Clinically qualified applicants are especially encouraged to apply.
+This course is aimed at PhD students, postdocs and more senior scientists with backgrounds ranging from experimental biology, clinical research, healthcare and hospital practice, data science, bioinformatics, who are interested in using systems biology approaches and computational modelling to tackle biological and biomedical problems concerning human disease.
 
 ### Learning outcomes
 
-After attending this course, participants will be able to:
+After completing the course, participants should be able to:
 
-- Assess the strengths, weaknesses, and limitations of different methodologies and approaches in clinical microbiology.
-- Appreciate the utility of molecular techniques in clinical laboratory and bacteriological methods and their transferability to other applications.
-- Apply a range of genomic methods including real-time PCR and conventional sequencing.
-- Create sequence data using next generation sequencing.
-- Analyse genomic data using publicly available software tools to identify causative organisms in an infection and to track an outbreak using WGS.
+- Understand the differences between static and dynamic representations of disease mechanisms
+- Understand basic concepts of discrete modelling approaches
+- Retrieve disease networks/ mechanisms from dedicated public repositories and databases, and use them as model templates
+- Use a range of computational modelling software to develop and analyse discrete computational models
+- Use available high and low throughput data to feed and train the models
 
 ### Programme
 
-Teaching will be based around three themes, chosen to represent three of the most pressing clinical imperatives in clinical bacteriology throughout the continent:
+The course will consist of lectures, discussions, and computational exercises covering as many of the following topics as possible:
 
-- Mycobacterium tuberculosis
-- Enteric bacteria and antimicrobial resistance
-- Encapsulated bacteria and vaccination
+- Static Disease Networks (molecular maps, pathway assembly, structural analysis etc.)
+  - Overview of databases/ resources
+  - Different network representations using systems biology graphical notation (SBGN) languages (Process Description, Activity Flow)
+  - Interactive network visualisation and topological analysis
 
-For each of these themes the following approaches will be covered:
+- Dynamic Disease Networks (Stochastic Models, Logical (Boolean)/ Discrete Models, Hybrid models)
+  - Network/ Model Curation and sharing
+  - Disease Boolean Networks
+  - Logical/Discrete modelling and simulation of disease networks, and analysis of their dynamical properties
+  - Stochastic modelling and simulations
+ Data integration
 
-- Fundamental molecular biology techniques including preparing, handling, and storing DNA.
-- PCR, including real-time PCR, with an emphasis on methods, applications and data interpretation.
-- Generating genomics sequence data, sequence variation analysis, its visualisation and interpretation.
-- Bioinformatic analysis of molecular and genomic data, particularly the exploitation of web-based tools and using R.
-- An overview of future technologies, and their potential for application in clinical microbiology.
+- Datatypes and discretization
+  - Integrating results from machine learning and AI into mechanistic models
+  - Data flows for digital twins
 
-These techniques will be explored in the lectures and tutorials and employed during the course practical sessions in the cross-cutting themes of pathogen detection and characterisation, including antimicrobial resistance and the evolution of pathogens, and the application of the data in the improvement of interventions to reduce disease burden.
 
 **Course Instructors**   
 
-- [Kanny Diallo](https://www.linkedin.com/in/kanny-diallo-phd-1081375b/?originalSubdomain=ci), Centre Suisse de Recherche Scientifique
-- [Brenda Kwambana-Adams](https://www.lstmed.ac.uk/about/people/brenda-kwambana-adams), Liverpool School of Tropical Medicine, Malawi
-- [Martin Maiden](https://www.biology.ox.ac.uk/people/professor-martin-maiden), University of Oxford
-- [Elizabeth (Lizma) Streicher](http://www.sun.ac.za/english/faculty/healthsciences/Molecular_Biology_Human_Genetics/tbgenomics/Pages/default.aspx), Stellenbosch University, South Africa
+- [Anna Niarakis](https://orcid.org/0000-0002-9687-7426), Université de Toulouse III - Paul Sabatier, Center of Integrative Biology, France
+- [Ben Hall](https://profiles.ucl.ac.uk/33570-benjamin-hall), University College London, UK
+- [David Shorthouse](https://profiles.ucl.ac.uk/82451), University College London, UK
+- [Sylvain Soliman](http://www.sun.ac.za/english/faculty/healthsciences/Molecular_Biology_Human_Genetics/tbgenomics/Pages/default.aspx), Stellenbosch University, South Africa
 - [Dam Khan](https://www.lshtm.ac.uk/aboutus/people/khan.dam), MRC Unit The Gambia at the London School of Hygiene & Tropical Medicine, The Gambia
 - [Keith Jolley](https://www.biology.ox.ac.uk/people/dr-keith-jolley), University of Oxford
 - [Leonard Ndwiga](https://www.linkedin.com/in/lndwiga), University of Glasgow
@@ -67,10 +68,7 @@ These techniques will be explored in the lectures and tutorials and employed dur
 **Wellcome Connecting Science Team**   
 
 - [Alice Matimba](https://uk.linkedin.com/in/alice-matimba-8805177), Head of Training and Global Capacity
-- [Isabela Malta](https://www.linkedin.com/in/isabela-malta-754503162/), Assistant Global Training Manager
 - [Karon Chappell](https://coursesandconferences.wellcomeconnectingscience.org/about-us/the-team/), Event Organiser
-- [Cassandra Soo](https://uk.linkedin.com/in/cassandra-claire-soo-b3783277/ms?trk=people-guest_people_search-card), Laboratory Courses Manager
-- [Aaron Dean](https://www.wellcomeconnectingscience.org/person/dean-aaron/), Laboratory Technical Officer
 - [Martin Asltett](https://coursesandconferences.wellcomeconnectingscience.org/about-us/the-team/), Informatics Manager
 - [Vaishnavi Vikas Gangadhar](https://www.wellcomeconnectingscience.org/person/gangadhar-vaishnavi/), Informatics Technical Officer
 
