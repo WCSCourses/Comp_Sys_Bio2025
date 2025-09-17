@@ -60,7 +60,7 @@ The course will consist of lectures, discussions, and computational exercises co
 - [Pedro T. Monteiro](http://pedromonteiro.org/), IST / INESC-ID - University of Lisbon, Portugal
 - [Arnau Montagud](https://arnaumontagud.netlify.app/), UInstitute for Integrative Systems Biology (I2SysBio), CSIC-UV, Spain
 - [Rahuman S Malik Sheriff](https://www.ebi.ac.uk/people/person/rahuman-sheriff/), European Bioinformatics Institute, UK
-- [Martina Summer-Kutmon]([https://maidenlab.zoo.ox.ac.uk/people/Simon%20Amoikon](https://www.linkedin.com/in/mkutmon/)), Maastricht Centre for Systems Biology and Bioinformatics (MaCSBio), Maastricht University
+- [Martina Summer-Kutmon](https://www.linkedin.com/in/mkutmon/), Maastricht Centre for Systems Biology and Bioinformatics (MaCSBio), Maastricht University
 
 **Wellcome Connecting Science Team**   
 
