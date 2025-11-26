@@ -58,7 +58,7 @@ The course will consist of lectures, discussions, and computational exercises co
 - [Sylvain Soliman](https://lifeware.inria.fr/~soliman/), Inria Saclay, France
 - [Tomas Helikar](https://www.linkedin.com/in/tomashelikar/), University of Nebraska - Lincoln, USA
 - [Pedro T. Monteiro](http://pedromonteiro.org/), IST / INESC-ID - University of Lisbon, Portugal
-- [Arnau Montagud](https://arnaumontagud.netlify.app/), UInstitute for Integrative Systems Biology (I2SysBio), CSIC-UV, Spain
+- [Arnau Montagud](https://arnaumontagud.netlify.app/), Institute for Integrative Systems Biology (I2SysBio), CSIC-UV, Spain
 - [Rahuman S Malik Sheriff](https://www.ebi.ac.uk/people/person/rahuman-sheriff/), European Bioinformatics Institute, UK
 - [Martina Summer-Kutmon](https://www.linkedin.com/in/mkutmon/), Maastricht Centre for Systems Biology and Bioinformatics (MaCSBio), Maastricht University, the Netherlands
 
