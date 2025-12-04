@@ -101,7 +101,7 @@ jupyter notebook
 
 - The first time you run the notebook, imports may take a while while packages initialize
 - If a plotting cell does not render in VS Code, try running the notebook in the browser via `jupyter notebook`
-- For Hands-on 3 and 4, you need to clone two external repositories and integrate local configuration files. A helpfulsetup_repos.sh files has been provided
+- For Hands-on 3 and 4, you need to clone two external repositories and integrate local configuration files. A helpful setup_repos.sh files has been provided
 
 ```bash
 ./setup_repos.sh
