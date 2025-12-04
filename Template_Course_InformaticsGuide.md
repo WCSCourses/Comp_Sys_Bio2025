@@ -1,16 +1,29 @@
-# <img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="300" height="50"> Add Course Title Informatics Guide
+# <img src="https://coursesandconferences.wellcomeconnectingscience.org/wp-content/themes/wcc_courses_and_conferences/dist/assets/svg/logo.svg" width="300" height="50"> 
+# Computational Systems Biology for Digital Medicine Informatics Guide 2025
 
 **Software used during the course**      
 
-| Software | Version (if not latest) | Module |Notes |
-|-------------|--------------|----------|-------------|
-| [Software Name](Software link) | Version Details | Module Name| Space for notes |
+| Software | Version (if not latest) | Module | Notes |
+|---------|--------------------------|---------|--------|
+| MetaLo | Latest | Model building and analysis sessions | Logic based modelling workflows |
+| MaBoSS | Latest | MaBoSS + PhysiBoSS Introduction AM (Wednesday) | Stochastic Boolean modelling |
+| CellDesigner | Latest | Systems Biology Graphical Notation (Monday) | SBML and network diagramming |
+| CoLoMoTo Notebook | Latest | Introduction to BN analysis and CoLoMoTo Notebook (Tuesday) | Docker based notebook environment |
+| Google Chrome | Latest | All modules | Browser needed for online tools |
+| Cytoscape + GeneMANIA | Latest | Pathways & Networks, Pathway and Network Analysis (Wednesday) | Network visualisation and gene interaction analysis |
+| JupyterLab | Latest | CoLoMoTo Notebook Practicals (Tuesday) | Web based coding environment |
+| Reactome | Latest | REACTOME demo + hands on (Thursday) | Pathway exploration |
+| CellCollective | Latest | CaSQ + CellCollective (Tuesday), Cell Collective Intro (Monday/Tuesday) | Interactive logical model building |
+| BioModelAnalyzer | Latest | Introduction to BMA (Wednesday), BMA Practical (Thursday) | Quantitative Boolean model analysis |
+| GinSim | Latest | Introduction to Boolean Modelling (Monday) | Logical modelling of regulatory networks |
+| PhysiBoSS | Latest | MaBoSS + PhysiBoSS Introduction (Wednesday) | Multiscale modelling |
+| BioModels | Latest | BioModels + Reactome session (Thursday) | Public model repository |
+
 
 ## Informatics Set-Up
 For installation and setup, please refer to the following guides:
 
 - **[Oracle VM VirtualBox Installation Guide](https://github.com/WCSCourses/index/blob/main/VM_Guide.md)** – Detailed instructions for installing and configuring VirtualBox on different operating systems. *(Note: Separate installations are needed for Intel-based and ARM-based Macs, and the VDI files will differ.)*
-- **[Docker Installation Guide](https://github.com/WCSCourses/index/blob/main/Docker_guide.md)** – Step-by-step guide for installing Docker on Windows, macOS, and Linux.
 
 The Host Operating System Requirements are: <br />
 - RAM requirement: 8GB (preferably 12GB) <br />
