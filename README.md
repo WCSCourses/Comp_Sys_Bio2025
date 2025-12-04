@@ -5,7 +5,8 @@
 ## 7–12 December 2025, Wellcome Genome Campus, UK
 
 [Wellcome Connecting Science Course Website Link](https://coursesandconferences.wellcomeconnectingscience.org/event/computational-systems-biology-for-digital-medicine-20251207/) <br /> 
-[Course Informatics Guide](#) <br /> 
+[Course Informatics Guide](https://github.com/WCSCourses/Comp_Sys_Bio2025/blob/main/Course_InformaticsGuide.md) <br /> 
+[Course Time Table](https://github.com/WCSCourses/Comp_Sys_Bio2025/blob/main/2025_Masterplanner%20-%20Timetable.pdf) <br /> 
 
 **From data to models to digital twins** 
 
