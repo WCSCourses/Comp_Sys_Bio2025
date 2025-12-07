@@ -1,6 +1,6 @@
 # Pathway and Network Analysis
 
-**Instructor**: Martina Summer-Kutmon
+**Instructor**: Martina Summer-Kutmon (martina.kutmon@maastrichtuniversity.nl)
 
 ### Overview
 In this practical session, we will perform pathway and basic network analysis to explore gene expression changes in senescent cells.
