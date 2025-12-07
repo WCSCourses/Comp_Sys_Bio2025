@@ -55,3 +55,11 @@ While I also provide step-by-step instructions for the Cytoscape user interface 
 - Reproducibility - Your analysis can be easily repeated and verified
 - Efficiency - Faster execution compared to manual GUI operations
 - Scalability - Simple to apply the same workflow to different datasets
+
+---
+
+### Running the scripts on your own computer
+
+- You'll need to install the latest versions of R and Rstudio. See instructions here: https://posit.co/download/rstudio-desktop/. 
+- Before you can run the script you need to install several R-packages: rstudioapi, readxl, EnhancedVolcano, org.Hs.eg.db, enrichplot, ggplot2, clusterProfiler, RCy3, RColorBrewer
+- Also make sure that you have the latest version of Cytoscape installed!
