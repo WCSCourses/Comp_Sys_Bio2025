@@ -4,7 +4,8 @@
 
 ### Overview
 In this practical session, we will perform pathway and basic network analysis to explore gene expression changes in senescent cells.
-Session Format: This will be an interactive session with short lectures/introductions and group discussions between modules. Please be prepared to engage with the material and share your findings.
+
+**Session Format**: This will be an interactive session with short lectures/introductions and short discussions between modules. 
 
 ---
 
