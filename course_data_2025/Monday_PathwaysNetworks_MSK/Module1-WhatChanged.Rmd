@@ -1,0 +1,220 @@
+---
+title: "MODULE 1: What Changed? - Identifying DEGs in Small Cell Lung Cancer"
+author: "mkutmon"
+date: "December 2025"
+output: html_document
+---
+
+# 🎯 Module Goal
+Identify which genes are significantly changed in lung cancer compared to healthy controls.
+The dataset used is available on GEO: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60052
+
+---
+
+# SETUP
+
+## Install & Load Packages
+
+```{r packages, message=FALSE, warning=FALSE}
+# Load packages
+library(EnhancedVolcano)
+library(rstudioapi)
+library(readxl)
+
+cat("✓ Packages loaded successfully!\n")
+```
+
+## Set Working Directory
+
+```{r}
+# Set working directory to script location
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+# Create output folder
+out.folder <- "output/"
+if(!dir.exists(out.folder)) dir.create(out.folder)
+
+cat("✓ Working directory:", getwd(), "\n")
+cat("✓ Output folder created\n")
+```
+
+---
+
+# LOAD DATA
+
+**What's in this dataset:**
+The dataset contains gene expression measurements comparing small cell lung cancer sample with healthy control lung tissue.
+
+**Columns:**
+- **GeneID**: Ensembl gene identifier
+- **GeneName**: Gene name (e.g., CDKN1A, TP53)
+- **log2FC**: Log2 fold change (Lung Cancer vs. healthy)
+  - **Positive** = UP in lung cancer
+  - **Negative** = DOWN in lung cancer
+- **pvalue**: P-value for this comparison
+- **padj**: correction for multiple testing
+
+
+```{r load-data}
+# Load lung cancer dataset
+data <- read_excel("lungcancer-dataset.xlsx")
+
+# Quick check
+cat("Total genes measured:", nrow(data), "\n\n")
+
+# View first few rows
+head(data)
+
+```
+
+**💡 CHECKPOINT:** You should see data for 32,842 genes.
+
+---
+
+# SUMMARY STATISTICS
+
+```{r summary-stats}
+# Summary of lung cancer data
+cat("\n=== LUNG CANCER DATA SUMMARY ===\n")
+summary(data[, c("log2FC", "padj")])
+
+```
+
+---
+
+# IDENTIFY DEGs
+
+**The Logic:**
+We want genes that are:
+1. **Strongly changed**: |log2FC| > 1 (at least 2-fold change)
+2. **Statistically significant**: padj < 0.05
+
+**Why these cutoffs?**
+- log2FC > 1: Biologically meaningful change (2-fold = 100% change)
+- padj < 0.05: 5% chance this is a false positive
+
+```{r identify-degs}
+# Define cutoffs
+log2fc.cutoff <- 1
+pvalue.cutoff <- 0.05
+
+# Filter for DEGs in lung cancer
+# abs() = absolute value, captures both up AND down regulated genes
+degs <- data[abs(data$log2FC) > log2fc.cutoff & 
+             data$padj < pvalue.cutoff, ]
+
+# Separate up and down regulated
+degs.up <- degs[degs$log2FC > 0, ]
+degs.down <- degs[degs$log2FC < 0, ]
+
+# Print results
+cat("\n=== DIFFERENTIALLY EXPRESSED GENES (Lung Cancer) ===\n")
+cat("Total DEGs:", nrow(degs), "\n")
+cat("  ↑ Up-regulated (higher in lung cancer):", nrow(degs.up), "\n")
+cat("  ↓ Down-regulated (lower in lung cancer):", nrow(degs.down), "\n")
+
+# Show top 10 most up-regulated genes
+print(degs.up[order(-degs.up$log2FC), ][1:10, c("GeneName", "log2FC", "padj")], row.names = FALSE)
+
+# Show top 10 most down-regulated genes
+print(degs.down[order(degs.down$log2FC), ][1:10, c("GeneName", "log2FC", "padj")], row.names = FALSE)
+
+# Save DEG list
+write.table(degs, file = paste0(out.folder, "degs-SCLC.tsv"),
+            row.names = FALSE, sep = "\t", quote = FALSE)
+
+cat("\n✓ DEG list saved to:", paste0(out.folder, "degs-SCLC.tsv\n"))
+```
+
+**💡 CHECKPOINT:** You should find ~6,600 DEGs (lung cancer involves widespread strong changes).
+
+**Look at the top genes:**
+- Do you recognize any? 
+- Are there more up or down-regulated genes?
+
+---
+
+# VISUALIZE WITH VOLCANO PLOT
+
+**What is a volcano plot?**
+- **X-axis**: log2FC (how much gene changed)
+  - Left = down in lung cancer
+  - Right = up in lung cancer
+- **Y-axis**: -log10(p-value) (statistical significance)
+  - Higher = more significant
+- **Colors**:
+  - Red = significantly changed 
+  - Blue = significantly but too low log2FC
+  - Green = High log2FC but not significant
+  - Grey = not significant with low log2FC
+
+```{r volcano-plot}
+# Calculate axis limits
+max.log2FC <- round(max(abs(data$log2FC), na.rm = TRUE))
+
+# Create volcano plot
+volcano <- EnhancedVolcano(
+  data,
+  title = paste0("Lung cancer vs. healthy (", nrow(degs), " DEGs)"),
+  subtitle = paste0("Up-regulated: ", nrow(degs.up), " | Down-regulated: ", nrow(degs.down)),
+  lab = data$GeneName,
+  x = "log2FC",
+  y = "padj",
+  pCutoff = pvalue.cutoff,
+  FCcutoff = log2fc.cutoff,
+  pointSize = 2,
+  labSize = 4,
+  xlim = c(-max.log2FC, max.log2FC),
+  ylim = c(0, 15),
+  legendPosition = "right"
+)
+
+print(volcano)
+
+# Save high-quality version
+png(paste0(out.folder, "volcano-plot-SCLC.png"), 
+    width = 2400, height = 1800, res = 200)
+print(volcano)
+dev.off()
+
+cat("\n✓ Volcano plot saved to:", paste0(out.folder, "volcano-plot-SCLC.png\n"))
+```
+
+**💡 LOOK AT THE PLOT:**
+- Which side has more DEGs (up or down)?
+- Any genes with extreme changes?
+
+---
+
+# SAVE WORKSPACE
+
+```{r save-workspace}
+# Save all variables for next module
+save.image(file = paste0(out.folder, "module1-workspace.RData"))
+cat("✓ Workspace saved for Module 2\n")
+```
+
+---
+
+# DISCUSSION QUESTIONS
+
+1. **How many DEGs did you find?**
+
+2. **Up-regulated vs. down-regulated genes**
+
+3. **Look at the top DEGs**
+   - Any familiar genes?
+   - Do the changes make biological sense?
+
+---
+
+# KEY TAKEAWAYS
+
+✓ We identified ~6,600 DEGs in lung cancer 
+✓ We have more up- than down-regulated genes
+✓ Volcano plot shows both magnitude and significance  
+✓ Lung cancer involves coordinated gene expression changes  
+
+**NEXT MODULE:** We'll find which biological pathways these DEGs belong to.
+
+---
