@@ -12,6 +12,7 @@ In this practical session, we will perform pathway and basic network analysis to
 ### Technical Setup
 
 **Docker Environment**
+
 A Docker image has been prepared containing:
 
 - RStudio
@@ -19,6 +20,7 @@ A Docker image has been prepared containing:
 - Analysis scripts and dataset
 
 **Visualization Software**
+
 Cytoscape is pre-installed on the VMs for pathway and network visualization and analysis.
 
 ---
