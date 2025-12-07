@@ -1,0 +1,402 @@
+---
+title: "MODULE 3: See It! - Pathway Visualization in Cytoscape"
+author: "mkutmon"
+date: "December 2025"
+output: html_document
+---
+
+# 🎯 Module Goal
+Visualize gene expression changes in senescence on biological pathway diagrams using Cytoscape.
+
+---
+
+# SETUP
+
+## Load Workspace from Module 2
+
+```{r load-workspace, message=FALSE, warning=FALSE}
+# Load packages
+library(RCy3)
+library(RColorBrewer)
+
+# Load saved data from Module 2
+load("output/module2-workspace.RData")
+
+cat("✓ Loaded from Module 2:\n")
+cat("  - Total genes:", nrow(data), "\n")
+cat("  - DEGs:", nrow(degs), "\n")
+cat("  - Enriched pathways:", nrow(enrichment.df), "\n")
+```
+
+---
+
+## IMPORTANT: Open Cytoscape!
+
+**Before running the code below:**
+1. Open the Cytoscape application
+2. Wait for it to fully load (may take 30-60 seconds)
+3. Keep it open in the background
+
+---
+
+## Test Connection to Cytoscape
+
+```{r test-connection}
+# Try to connect to Cytoscape
+tryCatch({
+  RCy3::cytoscapePing()
+  cat("✓ Successfully connected to Cytoscape!\n")
+}, error = function(e) {
+  cat("✗ Could not connect to Cytoscape\n")
+  cat("  Make sure Cytoscape is running and try again.\n")
+  cat("  Error:", e$message, "\n")
+})
+```
+
+**💡 CHECKPOINT:** You should see "Successfully connected to Cytoscape!"
+
+**If connection fails:**
+1. Make sure Cytoscape is actually open
+2. Restart Cytoscape
+3. Re-run the code chunk above
+
+---
+
+# VISUALIZE TOP ENRICHED PATHWAY
+
+## Choose Pathway
+
+Let's visualize the top enriched pathway from our analysis.
+
+```{r choose-pathway}
+# Get top pathway
+if(nrow(enrichment.df) > 0) {
+  pathway.id <- enrichment.df$ID[1]
+  pathway.name <- enrichment.df$Description[1]
+  pathway.count <- enrichment.df$Count[1]
+  
+  cat("=== PATHWAY TO VISUALIZE ===\n")
+  cat("Name:", pathway.name, "\n")
+  cat("ID:", pathway.id, "\n")
+  cat("DEGs in pathway:", pathway.count, "\n")
+} else {
+  cat("⚠ No enriched pathways found\n")
+}
+```
+
+---
+
+## Install WikiPathways App
+
+Cytoscape needs the WikiPathways app to import pathways.
+
+```{r install-app}
+# Check if WikiPathways app is installed
+status <- RCy3::getAppStatus("wikipathways")
+
+if (!grepl("status: Installed", status)) {
+  cat("Installing WikiPathways app...\n")
+  RCy3::installApp("wikipathways")
+  Sys.sleep(3)  # Wait for installation
+  cat("✓ WikiPathways app installed\n")
+} else {
+  cat("✓ WikiPathways app already installed\n")
+}
+```
+
+---
+
+## Import Pathway into Cytoscape
+
+**What this does:**
+Imports the pathway diagram from WikiPathways database into Cytoscape.
+
+```{r import-pathway}
+if(exists("pathway.id")) {
+  # Import pathway as a diagram (not as network)
+  cat("Importing pathway into Cytoscape...\n")
+  
+  RCy3::commandsRun(paste0('wikipathways import-as-pathway id=', pathway.id))
+  
+  # Give Cytoscape time to load
+  Sys.sleep(3)
+  
+  # Toggle graphics details for better view
+  RCy3::toggleGraphicsDetails()
+  
+  cat("✓ Pathway imported successfully!\n")
+  cat("\n🔍 Look at Cytoscape - you should see the pathway diagram!\n")
+}
+```
+
+**💡 CHECKPOINT:** Look at Cytoscape window - you should see a pathway diagram with genes, proteins, and metabolites.
+
+---
+
+## Load Expression Data
+
+**What this does:**
+Adds our gene expression data (log2FC, p-values) to the pathway nodes in Cytoscape.
+
+```{r load-data}
+# Load expression data into Cytoscape
+# Match by Ensembl ID
+RCy3::loadTableData(
+  data, 
+  data.key.column = "GeneID",      # Column in our data
+  table.key.column = "Ensembl"     # Column in Cytoscape nodes
+)
+
+cat("✓ Expression data loaded into Cytoscape\n")
+cat("\n🔍 In Cytoscape: Click 'Node Table' (bottom) to see log2FC and p-value columns (scroll to the right)\n")
+```
+
+**💡 CHECKPOINT:** In Cytoscape, look at the Node Table (bottom panel). You should see new columns: log2FC, p.value
+
+---
+
+## Apply Color Mapping
+
+**What this does:**
+Colors nodes based on gene expression in senescence:
+- **Red** = UP-regulated in senescence (positive log2FC)
+- **Blue** = DOWN-regulated in senescence (negative log2FC)  
+- **White** = No change (log2FC = 0)
+
+The more intense the color, the stronger the change.
+
+```{r color-mapping}
+# Define color scheme
+# Map log2FC from -1 (blue) to 0 (white) to +1 (red)
+data.values <- c(-2, 0, 2)
+node.colors <- c("#4393C3", "#FFFFFF", "#D6604D")  # Blue, White, Red
+
+# Apply color mapping to nodes
+RCy3::setNodeColorMapping(
+  table.column = "log2FC",    # Use replicative log2FC values
+  table.column.values = data.values,      # Define scale
+  colors = node.colors,                   # Define colors
+  mapping.type = "c",                     # "c" = continuous
+  style = "WikiPathways"                  # Apply to WikiPathways style
+)
+
+cat("✓ Color mapping applied\n")
+cat("\n🔍 In Cytoscape: Nodes should now be colored red/blue based on expression!\n")
+```
+
+**💡 INTERPRETATION:**
+- **Red nodes** = genes UP in senescence 
+- **Blue nodes** = genes DOWN in senescence 
+- **White/grey nodes** = no change or no data
+
+---
+
+## Add Significance Borders
+
+**What this does:**
+Adds green borders to genes that are statistically significant (p < 0.05).
+
+```{r border-mapping}
+# Map border color based on significance
+# Green = significant (p < 0.05)
+# Grey = not significant
+RCy3::setNodeBorderColorMapping(
+  table.column = "p.value",
+  table.column.values = c(0, 0.05),
+  colors = c("#00FF00", "#CCCCCC"),  # Green, Grey
+  mapping.type = "c",
+  style.name = "WikiPathways"
+)
+
+# Make borders thicker for significant genes
+RCy3::setNodeBorderWidthMapping(
+  table.column = "p.value",
+  table.column.values = c(0, 0.05, 1),
+  widths = c(5, 5, 0),               # Thick for p<0.05, none otherwise
+  mapping.type = "c",
+  style.name = "WikiPathways"
+)
+
+cat("✓ Significance borders applied\n")
+cat("\n🔍 In Cytoscape: Significant genes now have thick green borders!\n")
+```
+
+---
+
+## Export Visualization
+
+Save the pathway visualization as an image.
+
+```{r export-image}
+if(exists("pathway.id")) {
+  # Export as high-quality PNG
+  RCy3::exportImage(
+    filename = paste0(out.folder, pathway.id, "-pathway-replicative.png"),
+    type = "PNG",
+    zoom = 500
+  )
+  
+  cat("✓ Pathway visualization saved to:", 
+      paste0(out.folder, pathway.id, "-pathway-replicative.png\n"))
+}
+```
+
+---
+
+# INTERPRET THE VISUALIZATION
+
+**Look at the pathway in Cytoscape and answer:**
+
+1. **Which parts of the pathway are most affected?**
+   - Where do you see clusters of red or blue?
+   - Are entire branches affected?
+
+2. **Color patterns:**
+   - More red (up) or blue (down)?
+   - Mixed regulation or coordinated?
+
+3. **Do the changes make biological sense?**
+   - For senescence, what would you expect?
+   - Cell cycle genes? DNA damage genes?
+
+4. **Significant genes (green borders):**
+   - Are most changed genes also significant?
+   - Any highly significant but small changes?
+   
+---
+
+# TRY ANOTHER PATHWAY (HANDS-ON)
+
+**Your task:** Choose a different pathway and visualize it!
+
+```{r student-activity}
+# List available enriched pathways
+if(nrow(enrichment.df) > 0) {
+  cat("=== AVAILABLE PATHWAYS TO VISUALIZE ===\n")
+  cat("Choose one by row number:\n\n")
+  
+  n.pathways <- min(10, nrow(enrichment.df))
+  pathway.options <- enrichment.df[1:n.pathways, c("Description", "Count", "p.adjust")]
+  pathway.options$Row <- 1:n.pathways
+  print(pathway.options[, c("Row", "Description", "Count", "p.adjust")], row.names = FALSE)
+  
+  # TASK: Change this number to choose a pathway (1-10)
+  chosen.row <- 7  # <-- CHANGE THIS NUMBER
+  
+  # Get pathway info
+  student.pathway.id <- enrichment.df$ID[chosen.row]
+  student.pathway.name <- enrichment.df$Description[chosen.row]
+  
+  cat("\n=== YOU CHOSE ===\n")
+  cat("Pathway:", student.pathway.name, "\n")
+  cat("ID:", student.pathway.id, "\n")
+}
+```
+
+**Now run the visualization:**
+
+```{r student-visualization}
+if(exists("student.pathway.id")) {
+  # Import pathway
+  RCy3::commandsRun(paste0('wikipathways import-as-pathway id=', student.pathway.id))
+  Sys.sleep(3)
+  RCy3::toggleGraphicsDetails()
+  
+  # Load data
+  RCy3::loadTableData(data, data.key.column = "GeneID", table.key.column = "Ensembl")
+  
+  # Apply colors (same as before)
+  data.values <- c(-1, 0, 1)
+  node.colors <- c("#4393C3", "#FFFFFF", "#D6604D")  # Blue, White, Red
+  
+  RCy3::setNodeColorMapping(
+    table.column = "log2FC",
+    table.column.values = data.values,
+    colors = node.colors,
+    mapping.type = "c",
+    style = "WikiPathways"
+  )
+  
+  # Add borders
+  RCy3::setNodeBorderColorMapping(
+    table.column = "p.value",
+    table.column.values = c(0, 0.05),
+    colors = c("#00FF00", "#CCCCCC"),
+    mapping.type = "c",
+    style.name = "WikiPathways"
+  )
+  
+  RCy3::setNodeBorderWidthMapping(
+    table.column = "p.value",
+    table.column.values = c(0, 0.05, 1),
+    widths = c(5, 5, 0),
+    mapping.type = "c",
+    style.name = "WikiPathways"
+  )
+  
+  # Export
+  RCy3::exportImage(
+    filename = paste0(out.folder, student.pathway.id, "-pathway-student.png"),
+    type = "PNG",
+    zoom = 500
+  )
+  
+  cat("\n✓ Your pathway saved to:", 
+      paste0(out.folder, student.pathway.id, "-pathway-student.png\n"))
+}
+```
+
+**Compare with your neighbor:**
+- Which pathway did you choose?
+- What patterns do you see?
+- Are the changes what you expected?
+- How does it compare to the first pathway?
+
+---
+
+# SAVE SESSION
+
+```{r save-session}
+# Save Cytoscape session for later
+# This preserves all networks, styles, and data
+session.file <- paste0(out.folder, "cytoscape-session-senescence.cys")
+
+RCy3::saveSession(session.file)
+
+cat("✓ Cytoscape session saved to:", session.file, "\n")
+cat("  You can reopen this later in Cytoscape: File → Open → Session\n")
+```
+
+---
+
+# KEY TAKEAWAYS
+
+✓ Pathway diagrams show molecular context of gene expression changes  
+✓ Color coding reveals spatial patterns and coordinated regulation  
+✓ Red = up in senescence, Blue = down, Green border = significant  
+✓ Senescence pathways show characteristic patterns:
+  - SASP activation (cytokines up)
+  - Cell cycle arrest (CDK inhibitors up, cyclins down)
+  - DNA damage response (checkpoint genes up)
+✓ Visual inspection reveals biological insights not obvious from gene lists  
+
+**OPTIONAL:** Continue to Extensions for network analysis and drug targets!
+
+---
+
+# SENESCENCE BIOLOGY SUMMARY
+
+**What we've learned:**
+
+✓ **Molecular signature**: Thousands of genes changed  
+✓ **Coordinated program**: Multiple pathways affected  
+✓ **SASP**: Inflammatory secretome active  
+✓ **Cell cycle arrest**: CDK inhibitors up, cyclins down  
+✓ **DNA damage**: DDR pathway active  
+
+**Functional consequences:**
+- Cells stop dividing (tumor suppression)
+- Secrete factors (affect neighbors)
+- Resist apoptosis (accumulate with age)
+- Impair tissue function (contribute to aging)
+

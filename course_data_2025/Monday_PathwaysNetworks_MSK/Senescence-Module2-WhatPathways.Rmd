@@ -1,0 +1,201 @@
+---
+title: "MODULE 2: What Pathways? - Pathway Enrichment in Senescence"
+author: "mKutmon"
+date: "December 2025"
+output: html_document
+---
+
+# 🎯 Module Goal
+Identify which biological pathways contain more DEGs than expected by chance in replicative senescence.
+
+---
+
+# INSTRUCTOR LECTURE (10 min)
+**Before students run this code, explain:**
+- What is pathway enrichment analysis?
+- Why analyze pathways instead of individual genes?
+- What is the hypergeometric test?
+- How to interpret p-values and gene ratios?
+- What is WikiPathways database?
+
+---
+
+# SETUP
+
+## Load Workspace from Module 1
+
+```{r load-workspace, message=FALSE, warning=FALSE}
+# Load packages
+library(clusterProfiler)
+library(org.Hs.eg.db)
+library(enrichplot)
+library(ggplot2)
+
+# Load saved data from Module 1
+load("output/module1-workspace.RData")
+
+cat("✓ Loaded from Module 1:\n")
+cat("  - Total genes:", nrow(data), "\n")
+cat("  - DEGs (replicative):", nrow(degs), "\n")
+cat("  - Output folder:", out.folder, "\n")
+```
+
+**💡 CHECKPOINT:** You should see ~4,000 DEGs from Module 1.
+
+---
+
+```{r identifier-mapping}
+# Map background genes from Ensembl to Entrez Gene IDs
+degs.entrez <- bitr(
+  degs$GeneID,
+  fromType = "ENSEMBL",
+  toType = "ENTREZID",
+  OrgDb = org.Hs.eg.db
+)
+```
+
+---
+
+# PATHWAY ENRICHMENT ANALYSIS
+
+## The Concept
+
+**Think of it like this:**
+- You have a jar with 15,000 marbles (all measured genes)
+- 4,000 are RED (your DEGs)
+- 11,000 are WHITE (non-DEGs)
+- You randomly draw 100 marbles (genes of a specific pathway)
+- **Question**: "How many RED marbles did we get? Is it more than expected by chance?"
+
+**Expected by chance:** 4000/15000 × 100 ≈ 27 genes  
+**If we observe:** 60 genes → **Enriched!** (p-value tests significance)
+
+**Example for senescence:**
+- Cell Cycle pathway has 100 genes
+- We have 4,000 DEGs out of 15,000 measured genes
+- By chance: expect 27 DEGs in Cell Cycle
+- We observe: 60 DEGs → Cell Cycle is **enriched**
+
+**What the statistics mean:**
+- **GeneRatio**: "60/4000" = 60 DEGs in pathway / 4000 DEGs in dataset
+- **BgRatio**: "100/15000" = 100 pathway genes / 15000 measured genes
+- **pvalue**: Probability of seeing this by chance
+- **p.adjust**: Corrected for testing hundreds of pathways (FDR method)
+- **Count**: Number of our DEGs in this pathway
+
+```{r enrichment-analysis, message=FALSE, warning=FALSE}
+# Perform enrichment using WikiPathways database
+# WikiPathways is:
+# - Community-curated pathway database
+# - High quality, regularly updated
+# - Covers diverse biological processes
+# - Well-integrated with Cytoscape
+
+enrichment <- clusterProfiler::enrichWP(
+  gene = degs.entrez$ENTREZID,          # Our DEG list (Entrez IDs work best)
+  organism = "Homo sapiens",     # Human
+  pAdjustMethod = "fdr",         # False discovery rate correction
+  pvalueCutoff = 0.1            # Show pathways with p.adjust < 0.1
+)
+
+# Convert to data frame
+enrichment.df <- as.data.frame(enrichment)
+
+# Print summary
+cat("\n=== ENRICHMENT SUMMARY ===\n")
+cat("Number of enriched pathways:", nrow(enrichment.df), "\n\n")
+
+# Show enriched pathways
+print(enrichment.df[, c("Description", "Count", "GeneRatio", "pvalue", "p.adjust")], row.names = FALSE)
+
+
+# Save full results
+write.table(enrichment.df, 
+            file = paste0(out.folder, "enrichment-replicative.tsv"),
+            row.names = FALSE, sep = "\t", quote = FALSE)
+
+cat("\n✓ Results saved to:", paste0(out.folder, "enrichment-replicative.tsv\n"))
+```
+---
+
+# VISUALIZE ENRICHMENT
+
+## Dot Plot
+
+**What this shows:**
+- **Y-axis**: Pathway names (top pathways)
+- **X-axis**: Gene ratio (proportion of pathway genes that are DEGs)
+- **Dot size**: Number of DEGs in pathway
+- **Dot color**: Significance (redder = more significant)
+
+```{r dotplot}
+# Create dot plot showing top 20 pathways
+if(nrow(enrichment.df) > 0) {
+  dotplot(enrichment, showCategory = min(20, nrow(enrichment.df))) + 
+    ggtitle("Top Enriched Pathways in Replicative Senescence") +
+    theme(axis.text.y = element_text(size = 10))
+  
+  # Save
+  ggsave(paste0(out.folder, "enrichment-dotplot-replicative.png"), 
+         width = 10, height = 8, dpi = 200)
+  
+  cat("✓ Dot plot saved to:", paste0(out.folder, "enrichment-dotplot-replicative.png\n"))
+} else {
+  cat("⚠ No enriched pathways to plot\n")
+}
+```
+
+---
+
+## Tree Plot
+
+**Alternative visualization:**
+Shows the relationship (overlapping genes) between the enriched pathways. This is very helpful for interpretation.
+
+```{r treeplot}
+# Create bar plot
+if(nrow(enrichment.df) > 0) {
+  # Create treeplot to show similarity between pathways (overlapping genes)
+  enrichment.sim <- enrichplot::pairwise_termsim(enrichment)
+  treeplot(enrichment.sim, showCategory = 50, cluster.params=list(n = 10, label_words_n = 0))
+  
+  # Save
+  ggsave(paste0(out.folder, "enrichment-treeplot-replicative.png"), 
+         width = 20, height = 15, dpi = 200)
+  
+  cat("✓ Treeplot plot saved to:", paste0(out.folder, "enrichment-treeplot-replicative.png\n"))
+}
+```
+---
+
+# SAVE WORKSPACE
+
+```{r save-workspace}
+# Save all variables for next module
+save.image(file = paste0(out.folder, "module2-workspace.RData"))
+cat("✓ Workspace saved for Module 3\n")
+```
+
+---
+
+# DISCUSSION QUESTIONS (5 min)
+
+**For the instructor to discuss with students:**
+
+1. **What are the top enriched pathways?**
+
+2. **Look at the Gene Ratio values**
+   - Which pathway has the highest proportion of DEGs?
+   - What does a GeneRatio of "60/100" mean?
+
+---
+
+# KEY TAKEAWAYS
+
+✓ Pathway enrichment reveals biological context of DEGs  
+✓ Multiple pathways are affected in senescence (coordinated program)  
+✓ Immune-related processes, telomere erosion triggers MAPK 
+✓ Statistical correction (FDR) prevents false discoveries  
+✓ Gene Ratio shows what proportion of pathway is affected  
+
+**NEXT MODULE:** We'll visualize these pathways in Cytoscape with our expression data.
