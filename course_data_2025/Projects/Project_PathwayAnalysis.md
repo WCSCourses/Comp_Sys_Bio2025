@@ -1,7 +1,7 @@
 ## Project: Human prostate cancer cells treated with different anti-cancer drugs
 
 **What we have:**
-- Human LNCaP prostate cancer cells
+- Human LNCaP prostate cancer cell dataset (GSE211781)
 - 3 different drugs: Bicalutamide, Enzalutamide, and Apalutamide
 - Each drug tested with and without DHT (a hormone that feeds cancer growth)
 - 16 samples total with biological duplicates (n=2 per condition)
