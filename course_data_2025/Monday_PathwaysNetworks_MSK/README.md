@@ -22,7 +22,7 @@ A Docker image has been prepared containing:
 You can start the docker image by opening the terminal and running the following command.
 
 ```
-sudo docker run --rm -p 8787:8787 -e PASSWORD=WCS2025 --network="host" mkutmon/wcs-course-2025:pathway-analysis-docker
+docker run --rm -p 8787:8787 -e PASSWORD=WCS2025 --network="host" mkutmon/wcs-course-2025:pathway-analysis-docker
 ```
 
 You can then open the Chrome browser and type "localhost:8787" in the URL to open RStudio. 
