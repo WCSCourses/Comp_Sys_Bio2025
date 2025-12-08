@@ -19,11 +19,7 @@ A Docker image has been prepared containing:
 - All required R packages
 - Analysis scripts and dataset
 
-You can install the docker image by opening the Terminal on the VM and running the following two lines (the first one will take 1-2 minutes):
-
-```
-sudo docker pull mkutmon/wcs-course-2025:pathway-analysis-docker
-```
+You can start the docker image by opening the terminal and running the following command.
 
 ```
 sudo docker run --rm -p 8787:8787 -e PASSWORD=WCS2025 --network="host" mkutmon/wcs-course-2025:pathway-analysis-docker
