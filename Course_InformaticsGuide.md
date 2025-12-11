@@ -6,18 +6,18 @@
 | Software | Version (if not latest) | Module | Notes |
 |---------|--------------------------|---------|--------|
 | MetaLo | Latest | Model building and analysis sessions | Logic based modelling workflows |
-| MaBoSS | Latest | MaBoSS + PhysiBoSS Introduction AM (Wednesday) | Stochastic Boolean modelling |
-| CellDesigner | Latest | Systems Biology Graphical Notation (Monday) | SBML and network diagramming |
-| CoLoMoTo Notebook | Latest | Introduction to BN analysis and CoLoMoTo Notebook (Tuesday) | Docker based notebook environment |
+| MaBoSS | Latest | MaBoSS + PhysiBoSS Introduction AM | Stochastic Boolean modelling |
+| CellDesigner | Latest | Systems Biology Graphical Notation | SBML and network diagramming |
+| CoLoMoTo Notebook | Latest | Introduction to BN analysis and CoLoMoTo Notebook | Docker based notebook environment |
 | Google Chrome | Latest | All modules | Browser needed for online tools |
-| Cytoscape + GeneMANIA | Latest | Pathways & Networks, Pathway and Network Analysis (Wednesday) | Network visualisation and gene interaction analysis |
-| JupyterLab | Latest | CoLoMoTo Notebook Practicals (Tuesday) | Web based coding environment |
-| Reactome | Latest | REACTOME demo + hands on (Thursday) | Pathway exploration |
-| CellCollective | Latest | CaSQ + CellCollective (Tuesday), Cell Collective Intro (Monday/Tuesday) | Interactive logical model building |
-| BioModelAnalyzer | Latest | Introduction to BMA (Wednesday), BMA Practical (Thursday) | Quantitative Boolean model analysis |
-| GinSim | Latest | Introduction to Boolean Modelling (Monday) | Logical modelling of regulatory networks |
-| PhysiBoSS | Latest | MaBoSS + PhysiBoSS Introduction (Wednesday) | Multiscale modelling |
-| BioModels | Latest | BioModels + Reactome session (Thursday) | Public model repository |
+| Cytoscape + GeneMANIA | Latest | Pathways & Networks, Pathway and Network Analysis| Network visualisation and gene interaction analysis |
+| JupyterLab | Latest | CoLoMoTo Notebook Practicals | Web based coding environment |
+| Reactome | Website | REACTOME demo + hands on | Pathway exploration |
+| CellCollective | Website | CaSQ + CellCollective, Cell Collective Intro | Interactive logical model building |
+| BioModelAnalyzer | Website | Introduction to BMA , BMA Practical  | Quantitative Boolean model analysis |
+| GinSim | Latest | Introduction to Boolean Modelling | Logical modelling of regulatory networks |
+| PhysiBoSS | Latest | MaBoSS + PhysiBoSS Introduction | Multiscale modelling |
+| BioModels | Website | BioModels + Reactome session | Public model repository |
 
 
 ## Informatics Set-Up
